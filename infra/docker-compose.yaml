@@ -5,11 +5,11 @@ services:
     image: postgres:13.0-alpine
     restart: always
     environment:
-      POSTGRES_PASSWORD: your_password_here
+      POSTGRES_HOST_AUTH_METHOD: trust
     volumes:
       - postgres_db:/var/lib/postgresql/data/
-#    env_file:
-#      - ./.env
+    env_file:
+      - ./.env
   web:
     image: jliussup/yamdb_final:latest
     restart: always
