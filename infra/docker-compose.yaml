@@ -3,6 +3,11 @@ version: '3.8'
 services:
   db:
     image: postgres:13.0-alpine
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${DB_NAME}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     volumes:
       - postgres_db:/var/lib/postgresql/data/
     environment:
@@ -18,7 +23,8 @@ services:
       - static_value:/app/static
       - media_value:/app/media
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     env_file:
       - ./.env
   nginx:
