@@ -39,6 +39,7 @@ jobs:
       - name: Login to Docker
         uses: docker/login-action@v1
         with:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push to Docker Hub
@@ -55,6 +56,8 @@ jobs:
     steps:
       - name: executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
