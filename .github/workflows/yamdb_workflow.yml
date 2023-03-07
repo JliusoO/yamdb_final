@@ -58,7 +58,6 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            docker rm -f $(docker ps -aq)
             sudo docker pull jliussup/yamdb_final:latest
             sudo docker-compose stop
             sudo docker-compose rm web
