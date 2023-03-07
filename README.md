@@ -24,10 +24,6 @@ POSTGRES_PASSWORD=postgres
 DB_HOST=db
 DB_PORT=5432
 ```
-### Поднимаем контейнер
-```bash
-sudo docker-compose up -d --build 
-```
 ### Создаём связи миграции
 ```bash
 docker-compose exec web python manage.py makemigrations users
