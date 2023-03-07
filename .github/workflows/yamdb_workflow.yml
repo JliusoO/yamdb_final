@@ -5,7 +5,8 @@ on: [push]
 jobs:
   tests:
     runs-on: ubuntu-latest
-
+    environment:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python
@@ -29,6 +30,8 @@ jobs:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     needs: tests
+    environment:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
@@ -50,6 +53,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build_and_push_to_docker_hub
+    environment:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
     steps:
       - name: executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
