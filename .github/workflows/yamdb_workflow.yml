@@ -61,6 +61,7 @@ jobs:
             sudo docker image prune -f
             sudo docker pull jliussup/yamdb_final:latest
             sudo docker-compose stop
+            sudo docker-compose rm db
             sudo docker-compose rm web
             rm .env -f
             touch .env
