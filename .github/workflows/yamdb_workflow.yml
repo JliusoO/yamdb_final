@@ -21,6 +21,7 @@ jobs:
 
     - name: Test with flake8 and pytest
       run: |
+        echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
         python -m flake8
         pytest
 
