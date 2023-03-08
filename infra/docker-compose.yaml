@@ -8,8 +8,12 @@ services:
     ports:
       - "5432:5432"
     environment:
+      DB_ENGINE: django.db.backends.postgresql
+      DB_NAME: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+      DB_HOST: db
+      DB_PORT: 5432
     restart: always
     env_file:
       - .env
