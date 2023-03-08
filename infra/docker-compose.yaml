@@ -5,6 +5,8 @@ services:
     image: postgres:latest
     volumes:
       - postgres_db:/var/lib/postgresql/data/
+    ports:
+      - "15432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
