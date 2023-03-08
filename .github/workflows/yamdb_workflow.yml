@@ -58,6 +58,7 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
+            sudo docker-compose down --volumes
             sudo docker stop $(docker ps -a -q)
             sudo docker rm $(docker ps -qa)
             sudo docker image prune -f
