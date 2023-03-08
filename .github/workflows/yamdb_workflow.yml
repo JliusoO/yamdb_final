@@ -58,12 +58,11 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            sudo docker-compose stop
-            sudo docker-compose rm db
-            sudo docker-compose rm web
+            sudo docker stop $(docker ps -a -q)
+            sudo docker rm $(docker ps -qa)
             sudo docker image prune -f
-            sudo docker pull jliussup/yamdb_final:latest
             rm .env -f
+            sudo docker pull jliussup/yamdb_final:latest
             touch .env
             echo "host all all all $POSTGRES_HOST_AUTH_METHOD" >> pg_hba.conf
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
