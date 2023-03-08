@@ -5,7 +5,8 @@ services:
     image: postgres:13.0-alpine
     restart: always
     environment:
-      POSTGRES_PASSWORD: postgres
+      - POSTGRES_PASSWORD=postgres
+#      POSTGRES_PASSWORD: postgres
     volumes:
       - postgres_db:/var/lib/postgresql/data/
     env_file:
@@ -16,6 +17,8 @@ services:
     volumes:
       - static_value:/app/static
       - media_value:/app/media
+    depends_on:
+      - db
     env_file:
       - ./.env
   nginx:
