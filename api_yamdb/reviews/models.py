@@ -139,8 +139,7 @@ ROLE_CHOICES = [
 
 
 class User(AbstractUser):
-    username = models.CharField(
-        validators=(validate_username,),
+    username = models.CharField(max_length=150,),
         max_length=150,
         unique=True,
         blank=False,
@@ -256,10 +255,7 @@ class Title(models.Model):
         max_length=200,
         db_index=True
     )
-    year = models.IntegerField(
-        'год',
-        validators=(validate_year, )
-    )
+    year = models.PositiveSmallIntegerField()
     category = models.ForeignKey(
         Category,
         on_delete=models.SET_NULL,
